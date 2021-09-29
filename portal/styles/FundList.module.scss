@@ -1,0 +1,77 @@
+@import "variables";
+.fundingList {
+  transition: 0.4s;
+  margin-bottom: 25px;
+  &:hover {
+    box-shadow: 20px 20px 40px rgba(175, 175, 175, 0.16);
+  }
+  a {
+    color: $text-default;
+    font-size: 13px;
+    line-height: 2;
+    letter-spacing: 0.26px;
+  }
+  h3 {
+    font-weight: 700;
+    a {
+      color: $text-black;
+      font-size: 1.3125rem;
+      line-height: 1.62;
+      letter-spacing: -0.21px;
+
+      &:hover {
+        color: $text-primary;
+      }
+    }
+  }
+  ul {
+    li {
+      margin: 0 5px 5px 0;
+      a {
+        font-size: 13px;
+        line-height: 2;
+        letter-spacing: 0.26px;
+        min-width: 96px;
+        color: $text-black;
+        background-color: $bg-regent;
+        border-radius: 3px;
+        text-align: center;
+      }
+    }
+  }
+  .truncate {
+    overflow: hidden;
+    line-height: 1.625rem;
+    text-align: justify;
+    // max-height: 6rem;
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    // overflow: hidden !important;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+  }
+  .deadline {
+    font-weight: 500;
+    display: flex;
+    justify-content: flex-end !important;
+    align-items: flex-start;
+    color: $text-primary;
+    span {
+      color: $text-black;
+      margin-left: 5px;
+    }
+  }
+  .fundedBy {
+    color: $text-primary;
+    font-size: 13px;
+    line-height: 2;
+    letter-spacing: 0.26px;
+
+    a {
+      &:hover {
+        color: $text-primary;
+      }
+    }
+  }
+}

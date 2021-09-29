@@ -1,0 +1,97 @@
+@import "variables";
+
+.filterArea {
+  margin-top: -20%;
+  margin-bottom: 5%;
+  @media (min-width: 1400px) {
+    padding: 0 6rem;
+  }
+  h4 {
+    color: $text-black;
+  }
+  label {
+    // font-family: Montserrat, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    // color: #a8a8a8;
+    margin: 30px 0 6px;
+    display: inline-block;
+    letter-spacing: 0.04em;
+  }
+
+  .checkbox {
+    input[type="checkbox"] {
+      box-shadow: none;
+      &:checked {
+        background-color: $color-primary;
+        border-color: $color-primary;
+        box-shadow: none;
+      }
+    }
+    label {
+      text-transform: capitalize;
+      color: $color-black;
+      font-size: 16px;
+      font-weight: normal;
+      letter-spacing: normal;
+      margin: 0;
+    }
+  }
+
+  input[type="text"],
+  select {
+    display: block;
+    // width: 100%;
+    border: 1px solid #d1d1d1;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    height: 50px;
+    // line-height: 50px;
+    background-color: #fafafa;
+    box-sizing: border-box;
+    padding-left: 15px;
+    outline: 0;
+    margin: 0;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+    // font-family: Montserrat, sans-serif;
+    // color: #adadad;
+  }
+
+  .resetButton,
+  .moreButton {
+    float: right;
+    text-align: right;
+    margin-top: 25px;
+    // color: $text-default;
+    padding: 0;
+    font-size: 15px;
+    font-weight: 400;
+    box-shadow: none;
+
+    &:hover {
+      color: $text-primary;
+    }
+  }
+
+  .moreButton {
+    margin-left: 10px;
+    text-decoration: underline;
+  }
+
+  .filterButton {
+    width: 100%;
+    padding: 23px 40px;
+    margin-top: 30px;
+    color: $color-white;
+    background-color: $color-primary;
+    font-weight: 700;
+    box-shadow: none;
+    &:hover {
+      color: $color-white;
+      background-color: darken($color: $color-primary, $amount: 5%);
+    }
+  }
+}

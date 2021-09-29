@@ -1,0 +1,152 @@
+@import "variables";
+.details {
+  transition: 0.4s;
+  margin-top: 9.4375rem;
+  margin-bottom: 3.5rem;
+
+  @media (min-width: 1400px) {
+    margin: 9.4375rem 6rem 3.5rem 6rem;
+  }
+
+  ul {
+    li {
+      margin: 0 5px 5px 0;
+      color: $text-black;
+      a {
+        font-size: 13px;
+        line-height: 2;
+        letter-spacing: 0.26px;
+        min-width: 96px;
+        color: $text-black;
+        background-color: $bg-regent;
+        border-radius: 3px;
+        text-align: center;
+      }
+    }
+  }
+
+  .btnBack {
+    font-size: 13px;
+    line-height: 2;
+    letter-spacing: 0.26px;
+    font-weight: 700;
+
+    .circle40 {
+      max-width: 40px;
+      min-width: 40px;
+      max-height: 40px;
+      min-height: 40px;
+      border-radius: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      color: $text-black;
+      background-color: $color-white;
+      font-size: 0.875rem;
+      font-weight: 700;
+      line-height: 1.5;
+      letter-spacing: -0.24px;
+      box-shadow: 2px 2px 4px rgb(130 130 130 / 16%);
+    }
+  }
+
+  a {
+    color: $text-default;
+    font-size: 13px;
+    line-height: 2;
+    letter-spacing: 0.26px;
+  }
+
+  .detailCard {
+    &:hover {
+      box-shadow: 20px 20px 40px rgba(175, 175, 175, 0.16);
+    }
+
+    .sectionOne {
+      border-color: #e5e5e5;
+      a {
+        &:hover {
+          color: $text-primary;
+        }
+      }
+
+      h3 {
+        font-weight: 700;
+        color: $text-black;
+        font-size: 1.3125rem;
+        line-height: 1.62;
+        letter-spacing: -0.21px;
+      }
+
+      .fundedBy {
+        color: $text-primary;
+        font-size: 13px;
+        line-height: 2;
+        letter-spacing: 0.26px;
+      }
+
+      .deadline {
+        font-weight: 500;
+        display: flex;
+        justify-content: flex-end !important;
+        align-items: flex-start;
+        color: $text-primary;
+        span {
+          color: $text-black;
+          margin-left: 5px;
+        }
+      }
+    }
+
+    .sectionTwo {
+      border-color: #e5e5e5;
+      .implementedBy {
+        a {
+          &:hover {
+            color: $text-primary;
+          }
+        }
+      }
+    }
+
+    .sectionThree {
+      .description {
+        p:last-child {
+          line-height: 1.625rem;
+          color: $text-black;
+          text-align: justify;
+          letter-spacing: -0.08px;
+        }
+      }
+      .eligibility {
+        p {
+          line-height: 1.625rem;
+          color: $text-black;
+          text-align: justify;
+          letter-spacing: -0.08px;
+        }
+        p:nth-child(1) {
+          font-weight: 600;
+        }
+      }
+    }
+
+    .btnVisit {
+      color: $color-white;
+      background-color: $color-primary;
+      border-color: $color-primary;
+      font-weight: 700;
+      width: 180px;
+      min-width: 160px;
+      height: 48px;
+      line-height: 36px;
+      box-shadow: none;
+
+      &:hover {
+        color: $color-white;
+        background-color: darken($color: $color-primary, $amount: 5%);
+      }
+    }
+  }
+}

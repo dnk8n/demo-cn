@@ -1,0 +1,13 @@
+@import "variables";
+
+.footer {
+  background-color: $color-black;
+  color: $color-white !important;
+
+  a {
+    color: $color-primary;
+    &:hover {
+      color: darken($color: $color-primary, $amount: 5%);
+    }
+  }
+}

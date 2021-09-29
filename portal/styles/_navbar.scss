@@ -1,0 +1,7 @@
+.navbar-light .navbar-brand {
+  color: $text-default !important;
+}
+.navbar-light .navbar-nav .show > .nav-link,
+.navbar-light .navbar-nav .nav-link.active {
+  color: $text-primary !important;
+}

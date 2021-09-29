@@ -1,0 +1,64 @@
+@import "variables";
+
+.results {
+  @media (min-width: 1400px) {
+    padding: 0 6rem;
+  }
+  h4 {
+    color: $text-black;
+    font-weight: 600;
+    // line-height: 1.3em;
+    font-size: 1.3125rem;
+    line-height: 1.62;
+    letter-spacing: -0.21px;
+  }
+  select {
+    display: block;
+    width: 100%;
+    border: 1px solid #d1d1d1;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    height: 50px;
+    // line-height: 50px;
+    background-color: #fafafa;
+    box-sizing: border-box;
+    padding-left: 15px;
+    outline: 0;
+    margin: 0;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+    // font-family: Montserrat, sans-serif;
+    // color: #adadad;
+  }
+
+  .orderButton {
+    button {
+      color: $text-default;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: none;
+      padding-right: 0;
+    }
+    .active {
+      color: $color-primary;
+    }
+  }
+
+  .loadMore {
+  	margin-top: -35px;
+    margin-bottom: 3.5rem;
+    a {
+      color: $text-primary;
+      font-size: 13px;
+      line-height: 2;
+      letter-spacing: 0.26px;
+      font-weight: 700;
+      cursor: pointer;
+
+      &:hover {
+        color: darken($color: $text-primary, $amount: 5%);
+      }
+    }
+  }
+}
