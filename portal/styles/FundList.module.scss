@@ -11,19 +11,7 @@
     line-height: 2;
     letter-spacing: 0.26px;
   }
-  h3 {
-    font-weight: 700;
-    a {
-      color: $text-black;
-      font-size: 1.3125rem;
-      line-height: 1.62;
-      letter-spacing: -0.21px;
 
-      &:hover {
-        color: $text-primary;
-      }
-    }
-  }
   ul {
     li {
       margin: 0 5px 5px 0;
@@ -39,6 +27,51 @@
       }
     }
   }
+
+  .sectionOne {
+    li {
+      a {
+        &:hover {
+          color: $text-primary;
+        }
+      }
+    }
+
+    h3 {
+      font-weight: 700;
+      a {
+        color: $text-black;
+        font-size: 1.3125rem;
+        line-height: 1.62;
+        letter-spacing: -0.21px;
+
+        &:hover {
+          color: $text-primary;
+        }
+      }
+    }
+
+    .fundedBy {
+      color: $text-primary;
+      font-size: 13px;
+      line-height: 2;
+      letter-spacing: 0.26px;
+      margin-right: 10px;
+    }
+
+    .deadline {
+      font-weight: 500;
+      display: flex;
+      justify-content: flex-end !important;
+      align-items: flex-start;
+      color: $text-primary;
+      span {
+        color: $text-black;
+        margin-left: 5px;
+      }
+    }
+  }
+
   .truncate {
     overflow: hidden;
     line-height: 1.625rem;
@@ -50,28 +83,5 @@
     // overflow: hidden !important;
     text-overflow: ellipsis;
     -webkit-line-clamp: 4;
-  }
-  .deadline {
-    font-weight: 500;
-    display: flex;
-    justify-content: flex-end !important;
-    align-items: flex-start;
-    color: $text-primary;
-    span {
-      color: $text-black;
-      margin-left: 5px;
-    }
-  }
-  .fundedBy {
-    color: $text-primary;
-    font-size: 13px;
-    line-height: 2;
-    letter-spacing: 0.26px;
-
-    a {
-      &:hover {
-        color: $text-primary;
-      }
-    }
   }
 }

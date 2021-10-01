@@ -65,9 +65,11 @@
 
     .sectionOne {
       border-color: #e5e5e5;
-      a {
-        &:hover {
-          color: $text-primary;
+      li {
+        a {
+          &:hover {
+            color: $text-primary;
+          }
         }
       }
 
@@ -84,6 +86,7 @@
         font-size: 13px;
         line-height: 2;
         letter-spacing: 0.26px;
+        margin-right: 10px;
       }
 
       .deadline {
@@ -111,23 +114,18 @@
     }
 
     .sectionThree {
+      line-height: 1.625rem;
+      text-align: justify;
+      letter-spacing: -0.08px;
+      white-space: pre-wrap;
       .description {
         p:last-child {
-          line-height: 1.625rem;
           color: $text-black;
-          text-align: justify;
-          letter-spacing: -0.08px;
         }
       }
       .eligibility {
-        p {
-          line-height: 1.625rem;
+        p:last-child {
           color: $text-black;
-          text-align: justify;
-          letter-spacing: -0.08px;
-        }
-        p:nth-child(1) {
-          font-weight: 600;
         }
       }
     }
@@ -144,7 +142,6 @@
       box-shadow: none;
 
       &:hover {
-        color: $color-white;
         background-color: darken($color: $color-primary, $amount: 5%);
       }
     }

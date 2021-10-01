@@ -1,11 +1,11 @@
 import Link from "next/link";
 import client from "../apolloClient";
-import { GET_ALL_FUNDINGS } from "../queries/getAllFundings";
+import { buildFundingSchema } from "../queries/buildSchema";
 import styles from "../styles/Details.module.scss";
 
 export const getStaticPaths = async () => {
   const { data } = await client.query({
-    query: GET_ALL_FUNDINGS,
+    query: buildFundingSchema(null, null),
     variables: {
       limit: null,
     },
@@ -27,7 +27,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const id = context.params.page;
   const { data } = await client.query({
-    query: GET_ALL_FUNDINGS,
+    query: buildFundingSchema(null, null),
     variables: { id },
   });
 
@@ -46,7 +46,7 @@ export default function Details({ funding }) {
   const deadline = funding[0].deadline;
   const organisation = funding[0].funded_by;
   const implemented = funding[0].implemented_by;
-  const url = funding[0].url_links;
+  const urls = funding[0].url_links;
   const usages = funding[0].usages;
   const eligibility = funding[0].eligibility;
   const positions = funding[0].academic_positions;
@@ -95,12 +95,21 @@ export default function Details({ funding }) {
                                             .links[0]?.link.name
                                     }
                                     target="blank_"
+                                    // style={{
+                                    //   display:
+                                    //     (organisation.length > 1) &
+                                    //       !org.funding_org.grid_institute
+                                    //         .acronyms[0]?.acronym.name &&
+                                    //     "none",
+                                    // }}
                                   >
                                     {organisation.length > 1
                                       ? org.funding_org.grid_institute
                                           .acronyms[0]?.acronym.name
+                                        ? org.funding_org.grid_institute
+                                            .acronyms[0]?.acronym.name
+                                        : org.funding_org.grid_institute.name
                                       : org.funding_org.grid_institute.name}
-                                    {/* {organisation.length > 1 && ", "} */}
                                   </a>
                                 </li>
                               ))}
@@ -121,7 +130,7 @@ export default function Details({ funding }) {
                     <div className="card-btn-group">
                       <a
                         className={`btn ${styles.btnVisit} text-uppercase rounded-3 mr-4 mb-5`}
-                        href={url}
+                        href={urls[0]}
                         target="blank_"
                       >
                         Apply for this fund
@@ -133,7 +142,7 @@ export default function Details({ funding }) {
 
               <div className={`border-bottom pb-4 ${styles.sectionTwo}`}>
                 <div className="row pt-4">
-                  <div className="col-md-7">
+                  <div className="col-md-6">
                     <div className="mb-3">Categories</div>
                     <ul className="d-flex list-unstyled mr-n3 flex-wrap">
                       {categories.length > 0 &&
@@ -147,7 +156,7 @@ export default function Details({ funding }) {
                     </ul>
                   </div>
 
-                  <div className="col-md-5">
+                  <div className="col-md-6">
                     <div className="mb-3">Usages</div>
                     <ul className="d-flex list-unstyled mr-n3 flex-wrap">
                       {usages.length > 0 &&
@@ -163,9 +172,9 @@ export default function Details({ funding }) {
                 </div>
 
                 <div className="row pt-2">
-                  <div className="col-md-5">
+                  <div className="col-md-6">
                     <div className="mb-3">Academic Position</div>
-                    <ul className="list-unstyled mr-n3 mb-0">
+                    {/* <ul className="list-unstyled mr-n3 mb-0">
                       {positions.length > 0 &&
                         positions.map((position) => (
                           <li
@@ -181,10 +190,20 @@ export default function Details({ funding }) {
                             {position.academic_position.name}
                           </li>
                         ))}
+                    </ul> */}
+                    <ul className="d-flex list-unstyled mr-n3 flex-wrap">
+                      {positions.length > 0 &&
+                        positions.map((position) => (
+                          <li key={position.academic_position.id}>
+                            <a className="mr-3 px-3 py-1 mt-2" href="#">
+                              {position.academic_position.name}
+                            </a>
+                          </li>
+                        ))}
                     </ul>
                   </div>
 
-                  <div className="col-md-7">
+                  <div className="col-md-6">
                     <div className="mb-3">Thematic Focus</div>
                     <ul className="d-flex list-unstyled mr-n3 flex-wrap">
                       {focuses.length > 0 &&
@@ -200,7 +219,7 @@ export default function Details({ funding }) {
                 </div>
 
                 <div className={`row pt-4 ${styles.implementedBy}`}>
-                  <div className="col-md-12">
+                  <div className="col-md-6">
                     <div className="mb-3">Implemented by</div>
                     <ul className="d-flex list-unstyled mr-n3 flex-wrap">
                       {implemented.length > 0 &&
@@ -218,6 +237,24 @@ export default function Details({ funding }) {
                               target="blank_"
                             >
                               {org.funding_org.grid_institute.name}
+                            </a>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+
+                  <div className="col-md-6">
+                    <div className="mb-3">Url links</div>
+                    <ul className="d-flex list-unstyled mr-n3 flex-wrap">
+                      {urls.length > 0 &&
+                        urls.map((url, id) => (
+                          <li key={id}>
+                            <a
+                              className="mr-3 px-3 py-1 mt-2"
+                              href={url}
+                              target="blank_"
+                            >
+                              {url}
                             </a>
                           </li>
                         ))}
@@ -261,12 +298,12 @@ export default function Details({ funding }) {
                       <p>{description}</p>
                     </div>
                     <div className={`${styles.eligibility} mb-5`}>
-                      <p className="mb-4">Eligibility:</p>
+                      <p className="mb-4">Eligibility</p>
                       <p>{eligibility}</p>
                     </div>
                     <a
                       className={`btn ${styles.btnVisit} text-uppercase rounded-3 mr-4 mb-3`}
-                      href={url}
+                      href={urls[0]}
                       target="blank_"
                     >
                       Apply for this fund

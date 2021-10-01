@@ -11,10 +11,10 @@ export const Header = () => {
                 <div className="row">
                   <div className="col">
                     <div className={styles.content}>
-                      <h1>All Funds Starts With a Search </h1>
+                      <h1>Mapping Research Funding in Africa </h1>
                       <h5>
-                        Explore all the fundings & find just what you need with
-                        extreme ease{" "}
+                        Explore funding for African researchers as scientist,
+                        Higher Education manager or science policy-maker{" "}
                       </h5>
                     </div>
                   </div>

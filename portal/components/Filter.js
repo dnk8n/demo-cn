@@ -8,7 +8,7 @@ import { GET_THEMATIC_FOCUS } from "../queries/getThematicFocus";
 import { GET_USAGES } from "../queries/getUsages";
 import styles from "../styles/Filter.module.scss";
 
-export const Filter = ({ executeScroll, refetch }) => {
+export const Filter = ({ executeScroll }) => {
   const {
     searchParam,
     setSearchParam,
@@ -36,19 +36,17 @@ export const Filter = ({ executeScroll, refetch }) => {
   const topics = dataThematicFocus?.research_db_thematicfocus;
   const positions = dataAcademicPositions?.research_db_academicposition;
 
-  const handleFilterByUsage = (event) => {
-    const newUsageList = [...usage];
-    const index = usage.indexOf(event.target.value);
+  const handleUsage = (event) => {
+    const newUsageList = [...state.usage];
+    const index = state.usage.indexOf(event.target.value);
     if (index != -1) {
       newUsageList.splice(index, 1);
     } else {
       newUsageList.push(event.target.value);
     }
 
-    setUsage(newUsageList);
+    setState((prevState) => ({ ...prevState, usage: newUsageList }));
   };
-
-  const [search, setSearch] = useState("");
 
   const handleResetFilter = () => {
     setSearchParam("");
@@ -59,11 +57,30 @@ export const Filter = ({ executeScroll, refetch }) => {
     setPosition("");
   };
 
+  const [state, setState] = useState({
+    search: searchParam,
+    category: category,
+    country: country,
+    usage: usage,
+    topic: topic,
+    position: position,
+  });
+
+  const handleFieldChange = (event) => {
+    const { name, value } = event.target;
+    setState((prevState) => ({ ...prevState, [name]: value }));
+  };
+
   const handleFilterSearch = (event) => {
     event.preventDefault();
     executeScroll();
-    setSearchParam(`%${search}%`);
-    refetch({ searchParam: searchParam });
+
+    setSearchParam(`${state.search && "%" + state.search + "%"}`);
+    setCategory(state.category);
+    setCountry(state.country);
+    setUsage(state.usage);
+    setTopic(state.topic);
+    setPosition(state.position);
   };
   return (
     <div className="container">
@@ -78,10 +95,9 @@ export const Filter = ({ executeScroll, refetch }) => {
                     type="text"
                     className="form-control"
                     placeholder="Enter text to filter by..."
-                    // value={searchParam}
-                    onChange={(e) => {
-                      setSearch(e.target.value);
-                    }}
+                    name="search"
+                    value={state.search}
+                    onChange={handleFieldChange}
                   />
                 </div>
                 <div className="col-md-9 col-lg-9">
@@ -90,10 +106,9 @@ export const Filter = ({ executeScroll, refetch }) => {
                       <label>Categories</label>
                       <select
                         className="form-select"
-                        value={category}
-                        onChange={(e) => {
-                          setCategory(e.target.value);
-                        }}
+                        name="category"
+                        value={state.category}
+                        onChange={handleFieldChange}
                       >
                         <option value="">All Categories</option>
                         {categories?.length > 0 &&
@@ -108,10 +123,9 @@ export const Filter = ({ executeScroll, refetch }) => {
                       <label>Country</label>
                       <select
                         className="form-select"
-                        value={country}
-                        onChange={(e) => {
-                          setCountry(e.target.value);
-                        }}
+                        name="country"
+                        value={state.country}
+                        onChange={handleFieldChange}
                       >
                         <option value="">All Countries</option>
                         {countries?.length > 0 &&
@@ -127,10 +141,9 @@ export const Filter = ({ executeScroll, refetch }) => {
                       <label>Thematic Focus</label>
                       <select
                         className="form-select"
-                        value={topic}
-                        onChange={(e) => {
-                          setTopic(e.target.value);
-                        }}
+                        name="topic"
+                        value={state.topic}
+                        onChange={handleFieldChange}
                       >
                         <option value="">All Topic</option>
                         {topics?.length > 0 &&
@@ -145,10 +158,9 @@ export const Filter = ({ executeScroll, refetch }) => {
                       <label>Academic Positions</label>
                       <select
                         className="form-select"
-                        value={position}
-                        onChange={(e) => {
-                          setPosition(e.target.value);
-                        }}
+                        name="position"
+                        value={state.position}
+                        onChange={handleFieldChange}
                       >
                         <option value="">All Positions</option>
                         {positions?.length > 0 &&
@@ -171,7 +183,7 @@ export const Filter = ({ executeScroll, refetch }) => {
                             className="form-check-input"
                             type="checkbox"
                             value={usage.name}
-                            onClick={handleFilterByUsage}
+                            onClick={handleUsage}
                           />
                           <label className="form-check-label">
                             {usage.name}

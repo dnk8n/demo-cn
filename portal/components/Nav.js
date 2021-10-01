@@ -57,15 +57,15 @@ export const Nav = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  About
+                <a className="nav-link" href="https://docs.rdb.dnk8n.dev/" target="_blank">
+                  Documentation
                 </a>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className="nav-link" href="#">
                   Organizations
                 </a>
-              </li>
+              </li> */}
             </ul>
             {/* <form className="d-flex">
               <input

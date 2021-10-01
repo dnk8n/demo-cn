@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Error } from "../components/Error";
 import { Filter } from "../components/Filter";
 import { FundList } from "../components/FundList";
@@ -8,8 +8,10 @@ import { Loader } from "../components/Loader";
 import { MoreLoader } from "../components/MoreLoader";
 import { NoResult } from "../components/NoResult";
 import { useFilterContext } from "../context/FilterContext";
-import { GET_ALL_FUNDINGS } from "../queries/getAllFundings";
-import { GET_FUNDING_AGGREGATE } from "../queries/getFundingAggregate";
+import {
+  buildAggregateSchema,
+  buildFundingSchema,
+} from "../queries/buildSchema";
 import styles from "../styles/Home.module.scss";
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop);
@@ -30,8 +32,8 @@ export default function Home() {
   const [sortField, setSortField] = useState("deadline");
   const [showLoader, setShowLoader] = useState(false);
 
-  const { loading, error, data, refetch, fetchMore } = useQuery(
-    GET_ALL_FUNDINGS,
+  const { loading, error, data, fetchMore } = useQuery(
+    buildFundingSchema(country, topic),
     {
       variables: {
         limit: 10,
@@ -54,7 +56,7 @@ export default function Home() {
     loading: loadingTotal,
     error: errorTotal,
     data: dataTotal,
-  } = useQuery(GET_FUNDING_AGGREGATE, {
+  } = useQuery(buildAggregateSchema(country, topic), {
     variables: {
       offset: 0,
       id: id || null,
@@ -77,7 +79,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <Filter executeScroll={executeScroll} refetch={refetch} />
+      <Filter executeScroll={executeScroll} />
       <div className="container">
         <div className={styles.results} ref={searchResultsRef}>
           <div className="row mb-4">
