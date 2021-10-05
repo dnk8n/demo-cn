@@ -32,9 +32,10 @@ export const FundList = ({
                       <a href={encodeURIComponent(id)}>{title}</a>
                     </h3>
                     <div className="d-flex">
-                      <span className={styles.fundedBy}>Funded by: </span>
+                      <span className={styles.fundedBy}>Item Type: </span>
                       <ul className="d-flex list-unstyled mr-n3 flex-wrap">
-                        {organisation.length > 0 &&
+                        {organisation}
+                        {/* {organisation.length > 0 &&
                           organisation.map((org) => (
                             <li key={org.funding_org.grid_institute.id}>
                               {organisation.length > 1}
@@ -64,7 +65,7 @@ export const FundList = ({
                                   : org.funding_org.grid_institute.name}
                               </a>
                             </li>
-                          ))}
+                          ))} */}
                       </ul>
                     </div>
                   </div>
@@ -78,7 +79,11 @@ export const FundList = ({
                 <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
                   <span className="text-black-2">80-90K</span> PLN
                 </p> */}
-                  Deadline:<span> {new Date(deadline).toDateString()}</span>
+                  Year Published:
+                  <span>
+                    {deadline}
+                    {/* {new Date(deadline).toDateString()} */}
+                  </span>
                 </div>
               </div>
             </div>
@@ -96,17 +101,18 @@ export const FundList = ({
                 className="mb-2"
                 style={{ fontWeight: "500", fontSize: "14px" }}
               >
-                Categories:
+                Complete:
               </div>
               <ul className="d-flex list-unstyled mr-n3 flex-wrap">
-                {categories.length > 0 &&
+                {categories}
+                {/* {categories.length > 0 &&
                   categories.map((category) => (
                     <li key={category.category.id}>
                       <a className="mr-3 px-3 py-1 mt-2" href="#">
                         {category.category.name}
                       </a>
                     </li>
-                  ))}
+                  ))} */}
               </ul>
             </div>
 
@@ -115,17 +121,18 @@ export const FundList = ({
                 className="mb-2"
                 style={{ fontWeight: "500", fontSize: "14px" }}
               >
-                Usages:
+                Language:
               </div>
               <ul className="d-flex list-unstyled mr-n3 flex-wrap">
-                {usages.length > 0 &&
+                {usages}
+                {/* {usages.length > 0 &&
                   usages.map((usage) => (
                     <li key={usage.usage.id}>
                       <a className="mr-3 px-3 py-1 mt-2" href="#">
                         {usage.usage.name}
                       </a>
                     </li>
-                  ))}
+                  ))} */}
               </ul>
             </div>
 
