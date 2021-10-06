@@ -33,6 +33,10 @@ export const Filter = ({ executeScroll }) => {
   const categories = dataCategories?.demo_item;
   const countries = dataCountries?.demo_item;
   const usages = dataUsages?.demo_item;
+
+  // console.log(usages);
+  // const use = [...new Set(usages?.map((x) => x.language))];
+  // console.log("usage===", use);
   // const topics = dataThematicFocus?.research_db_thematicfocus;
   // const positions = dataAcademicPositions?.research_db_academicposition;
 
