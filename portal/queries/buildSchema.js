@@ -195,7 +195,6 @@ export const buildFundingSchema = (searchParam, category, country, usage) => {
           }
           ${category ? "complete: { _eq: $category }" : ""}
           ${country ? "item_type: { _eq: $country }" : ""}
-          ${usage.length > 0 ? "language: { _in: $usage }" : ""}     
         }
       ) {
         id
@@ -228,7 +227,7 @@ export const buildAggregateSchema = (searchParam, category, country, usage) => {
       demo_item_aggregate(
         offset: $offset
         order_by: { title: $orderTypeName, year_published: $orderTypeDeadline }
-        where:{
+        where: {
           ${
             searchParam
               ? "_or: [{ title: { _ilike: $searchParam } }, { description: { _ilike: $searchParam } }]"
@@ -236,7 +235,6 @@ export const buildAggregateSchema = (searchParam, category, country, usage) => {
           }
           ${category ? "complete: { _eq: $category }" : ""}
           ${country ? "item_type: { _eq: $country }" : ""}
-          ${usage.length > 0 ? "language: { _in: $usage }" : ""}
         }
         ) {
         aggregate {
