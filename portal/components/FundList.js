@@ -29,7 +29,7 @@ export const FundList = ({
                 </div> */}
                   <div>
                     <h3 className="mb-0">
-                      <a>{title}</a>
+                      <a href={encodeURIComponent(id)}>{title}</a>
                     </h3>
                     <div className="d-flex">
                       <span className={styles.fundedBy}>Item Type: </span>
