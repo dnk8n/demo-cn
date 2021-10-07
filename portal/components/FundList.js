@@ -124,15 +124,15 @@ export const FundList = ({
                 Language:
               </div>
               <ul className="d-flex list-unstyled mr-n3 flex-wrap">
-                {/* {usages} */}
-                {usages.length > 0 &&
+                {usages}
+                {/* {usages.length > 0 &&
                   usages.map((usage, id) => (
                     <li key={id}>
                       <a className="mr-3 px-3 py-1 mt-2" href="#">
                         {usage}
                       </a>
                     </li>
-                  ))}
+                  ))} */}
               </ul>
             </div>
 

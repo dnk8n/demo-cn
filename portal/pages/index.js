@@ -72,7 +72,6 @@ export default function Home() {
   });
 
   const count = dataTotal?.demo_item_aggregate;
-  console.log(dataTotal);
 
   const searchResultsRef = useRef();
   const executeScroll = () => scrollToRef(searchResultsRef);

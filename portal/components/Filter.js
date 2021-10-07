@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { concat, useQuery } from "@apollo/client";
 import { useState } from "react";
 import { useFilterContext } from "../context/FilterContext";
 import { GET_ACADEMIC_POSITIONS } from "../queries/getAcademicPositions";
@@ -34,9 +34,15 @@ export const Filter = ({ executeScroll }) => {
   const countries = dataCountries?.demo_item;
   const usages = dataUsages?.demo_item;
 
-  // console.log(usages);
-  // const use = [...new Set(usages?.map((x) => x.language))];
-  // console.log("usage===", use);
+  // const usagesArray = [
+  //   ...new Set(
+  //     [].concat.apply(
+  //       [],
+  //       usages?.map((x) => x.language)
+  //     )
+  //   ),
+  // ];
+
   // const topics = dataThematicFocus?.research_db_thematicfocus;
   // const positions = dataAcademicPositions?.research_db_academicposition;
 

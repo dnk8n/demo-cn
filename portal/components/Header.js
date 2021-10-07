@@ -14,10 +14,10 @@ export const Header = () => {
                     <div className="col">
                       <div className={styles.content}>
                         <h1> Community Networks Training Repository </h1>
-                        <h5>
+                        {/* <h5>
                           Explore funding for African researchers as scientist,
                           Higher Education manager or science policy-maker{" "}
-                        </h5>
+                        </h5> */}
                       </div>
                     </div>
                   </div>
