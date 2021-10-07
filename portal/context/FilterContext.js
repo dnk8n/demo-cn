@@ -4,7 +4,7 @@ export const FilterContext = createContext();
 
 export default function FilterProvider({ children }) {
   const [id, setId] = useState("");
-  const [sortOrder, setSortOrder] = useState("desc");
+  const [sortOrder, setSortOrder] = useState("desc_nulls_last");
   const [searchParam, setSearchParam] = useState("");
   const [category, setCategory] = useState("");
   const [country, setCountry] = useState("");

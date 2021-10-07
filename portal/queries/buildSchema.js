@@ -168,7 +168,13 @@ import gql from "graphql-tag";
 //   return schema;
 // };
 
-export const buildFundingSchema = (searchParam=null, category=null, country=null, usage=[]) => {
+export const buildFundingSchema = (
+  id,
+  searchParam = null,
+  category = null,
+  country = null,
+  usage = []
+) => {
   const schema = gql`
     query AllItems(
       $limit: Int
@@ -196,6 +202,7 @@ export const buildFundingSchema = (searchParam=null, category=null, country=null
           ${category ? "complete: { _eq: $category }" : ""}
           ${country ? "item_type: { _eq: $country }" : ""}
           ${usage.length > 0 ? "language: { _in: $usage }" : ""}
+          ${id ? "id: { _eq: $id }" : ""}
         }
       ) {
         id

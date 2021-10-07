@@ -12,9 +12,6 @@ export const getStaticPaths = async () => {
   });
 
   const fundings = data?.demo_item;
-  console.log('***')
-  console.log(fundings)
-  console.log('***')
   const paths = fundings.map((funding) => {
     return {
       params: { page: funding.id.toString() },
@@ -30,7 +27,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const id = context.params.page;
   const { data } = await client.query({
-    query: buildFundingSchema(null, null),
+    query: buildFundingSchema(id),
     variables: { id },
   });
 
@@ -80,9 +77,7 @@ export default function Details({ funding }) {
                           <ul className="d-flex list-unstyled mr-n3 flex-wrap">
                             {
                               <li>
-                                <a
-                                  className="mr-3 px-3 py-1 mt-2"
-                                >
+                                <a className="mr-3 px-3 py-1 mt-2">
                                   {item_type}
                                 </a>
                               </li>
@@ -94,7 +89,7 @@ export default function Details({ funding }) {
                   </div>
                   <div className="col-md-5 text-right">
                     <div className={styles.deadline}>
-                    Year Published:<span> {year_published}</span>
+                      Year Published:<span> {year_published}</span>
                     </div>
                   </div>
                 </div>
@@ -102,7 +97,11 @@ export default function Details({ funding }) {
                 <div className="row pt-4">
                   <div className="col-12">
                     <div className="card-btn-group">
-                      <a className={`btn ${styles.btnVisit} text-uppercase rounded-3 mr-4 mb-5`}>Call to Action</a>
+                      <a
+                        className={`btn ${styles.btnVisit} text-uppercase rounded-3 mr-4 mb-5`}
+                      >
+                        Call to Action
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -114,7 +113,7 @@ export default function Details({ funding }) {
                     <div className="mb-3">Language</div>
                     <ul className="d-flex list-unstyled mr-n3 flex-wrap">
                       {
-                        <li >
+                        <li>
                           <a className="mr-3 px-3 py-1 mt-2" href="#">
                             {language}
                           </a>

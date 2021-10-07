@@ -33,7 +33,7 @@ export default function Home() {
   const [showLoader, setShowLoader] = useState(false);
 
   const { loading, error, data, fetchMore } = useQuery(
-    buildFundingSchema(searchParam, category, country, usage),
+    buildFundingSchema(null, searchParam, category, country, usage),
     {
       variables: {
         limit: 10,
@@ -104,7 +104,9 @@ export default function Home() {
                 <div className={`d-flex ${styles.orderButton}`}>
                   <button
                     value="asc_nulls_last"
-                    className={`btn ${sortOrder == "asc_nulls_last" && styles.active}`}
+                    className={`btn ${
+                      sortOrder == "asc_nulls_last" && styles.active
+                    }`}
                     onClick={(e) => {
                       setSortOrder(e.target.value);
                     }}
@@ -113,7 +115,9 @@ export default function Home() {
                   </button>
                   <button
                     value="desc_nulls_last"
-                    className={`btn ${sortOrder == "desc_nulls_last" && styles.active}`}
+                    className={`btn ${
+                      sortOrder == "desc_nulls_last" && styles.active
+                    }`}
                     onClick={(e) => {
                       setSortOrder(e.target.value);
                     }}
