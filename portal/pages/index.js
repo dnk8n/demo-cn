@@ -103,8 +103,8 @@ export default function Home() {
                 </div>
                 <div className={`d-flex ${styles.orderButton}`}>
                   <button
-                    value="asc"
-                    className={`btn ${sortOrder == "asc" && styles.active}`}
+                    value="asc_nulls_last"
+                    className={`btn ${sortOrder == "asc_nulls_last" && styles.active}`}
                     onClick={(e) => {
                       setSortOrder(e.target.value);
                     }}
@@ -112,8 +112,8 @@ export default function Home() {
                     Asc
                   </button>
                   <button
-                    value="desc"
-                    className={`btn ${sortOrder == "desc" && styles.active}`}
+                    value="desc_nulls_last"
+                    className={`btn ${sortOrder == "desc_nulls_last" && styles.active}`}
                     onClick={(e) => {
                       setSortOrder(e.target.value);
                     }}
