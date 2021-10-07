@@ -195,7 +195,7 @@ export const buildFundingSchema = (searchParam, category, country, usage) => {
           }
           ${category ? "complete: { _eq: $category }" : ""}
           ${country ? "item_type: { _eq: $country }" : ""}
-          ${usage ? "language: { _in: $usage }" : ""}
+          ${usage.length > 0 ? "language: { _in: $usage }" : ""}
         }
       ) {
         id
@@ -236,7 +236,7 @@ export const buildAggregateSchema = (searchParam, category, country, usage) => {
           }
           ${category ? "complete: { _eq: $category }" : ""}
           ${country ? "item_type: { _eq: $country }" : ""}
-          ${usage ? "language: { _in: $usage }" : ""}
+          ${usage.length > 0 ? "language: { _in: $usage }" : ""}
         }
         ) {
         aggregate {
