@@ -57,13 +57,7 @@ export const Nav = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a
-                  className="nav-link"
-                  href="https://docs.rdb.dnk8n.dev/"
-                  target="_blank"
-                >
-                  Documentation
-                </a>
+                <a className="nav-link">Documentation</a>
               </li>
               {/* <li className="nav-item">
                 <a className="nav-link" href="#">
