@@ -4,7 +4,7 @@ const cache = new InMemoryCache({
   typePolicies: {
     Query: {
       fields: {
-        research_db_fundingprogram: {
+        demo_item: {
           keyArgs: false,
           merge(existing, incoming, { args: { offset = 0 } }) {
             // Slicing is necessary because the existing data is
@@ -22,7 +22,7 @@ const cache = new InMemoryCache({
 });
 
 const client = new ApolloClient({
-  uri: "https://api.rdb.dnk8n.dev/v1/graphql",
+  uri: "https://api.test.lokal.network/v1/graphql",
   cache: new InMemoryCache(),
 });
 

@@ -7,7 +7,7 @@ export const Footer = () => {
           <div className="copyright text-center text-xl-left">
             © 2021{" "}
             <a className="font-weight-bold ml-1" href="/" target="_blank">
-              researchDB.{" "}
+              APCRepo.{" "}
             </a>
             All rights Reserved
           </div>

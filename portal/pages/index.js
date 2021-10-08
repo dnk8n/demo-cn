@@ -29,18 +29,18 @@ export default function Home() {
     position,
   } = useFilterContext();
 
-  const [sortField, setSortField] = useState("deadline");
+  const [sortField, setSortField] = useState("year_published");
   const [showLoader, setShowLoader] = useState(false);
 
   const { loading, error, data, fetchMore } = useQuery(
-    buildFundingSchema(country, topic),
+    buildFundingSchema(null, searchParam, category, country, usage),
     {
       variables: {
         limit: 10,
         offset: 0,
         id: id || null,
-        orderTypeName: sortField == "name" ? sortOrder : null,
-        orderTypeDeadline: sortField == "deadline" ? sortOrder : null,
+        orderTypeName: sortField == "title" ? sortOrder : null,
+        orderTypeDeadline: sortField == "year_published" ? sortOrder : null,
         searchParam: searchParam || null,
         category: category || null,
         country: country || null,
@@ -50,18 +50,18 @@ export default function Home() {
       },
     }
   );
-  const fundings = data?.research_db_fundingprogram;
+  const fundings = data?.demo_item;
 
   const {
     loading: loadingTotal,
     error: errorTotal,
     data: dataTotal,
-  } = useQuery(buildAggregateSchema(country, topic), {
+  } = useQuery(buildAggregateSchema(searchParam, category, country, usage), {
     variables: {
       offset: 0,
       id: id || null,
-      orderTypeName: sortField == "name" ? sortOrder : null,
-      orderTypeDeadline: sortField == "deadline" ? sortOrder : null,
+      orderTypeName: sortField == "title" ? sortOrder : null,
+      orderTypeDeadline: sortField == "year_published" ? sortOrder : null,
       searchParam: searchParam || null,
       category: category || null,
       country: country || null,
@@ -71,7 +71,7 @@ export default function Home() {
     },
   });
 
-  const count = dataTotal?.research_db_fundingprogram_aggregate;
+  const count = dataTotal?.demo_item_aggregate;
 
   const searchResultsRef = useRef();
   const executeScroll = () => scrollToRef(searchResultsRef);
@@ -97,14 +97,16 @@ export default function Home() {
                     value={sortField}
                     onChange={(e) => setSortField(e.target.value)}
                   >
-                    <option value="name">Name</option>
-                    <option value="deadline">Deadline</option>
+                    <option value="title">Title</option>
+                    <option value="year_published">Year Published</option>
                   </select>
                 </div>
                 <div className={`d-flex ${styles.orderButton}`}>
                   <button
-                    value="asc"
-                    className={`btn ${sortOrder == "asc" && styles.active}`}
+                    value="asc_nulls_last"
+                    className={`btn ${
+                      sortOrder == "asc_nulls_last" && styles.active
+                    }`}
                     onClick={(e) => {
                       setSortOrder(e.target.value);
                     }}
@@ -112,8 +114,10 @@ export default function Home() {
                     Asc
                   </button>
                   <button
-                    value="desc"
-                    className={`btn ${sortOrder == "desc" && styles.active}`}
+                    value="desc_nulls_last"
+                    className={`btn ${
+                      sortOrder == "desc_nulls_last" && styles.active
+                    }`}
                     onClick={(e) => {
                       setSortOrder(e.target.value);
                     }}
@@ -135,11 +139,11 @@ export default function Home() {
                 id={funding.id}
                 title={funding.title}
                 description={funding.description}
-                categories={funding.categories}
-                deadline={funding.deadline}
-                organisation={funding.funded_by}
-                url={funding.url_links}
-                usages={funding.usages}
+                categories={funding.complete}
+                deadline={funding.year_published}
+                organisation={funding.item_type}
+                // url={funding.url_links}
+                usages={funding.language}
               />
             ))
           ) : (
@@ -159,9 +163,9 @@ export default function Home() {
                     orderType: sortOrder,
                   },
                   updateQuery: (prevResult, { fetchMoreResult }) => {
-                    fetchMoreResult.research_db_fundingprogram = [
-                      ...prevResult.research_db_fundingprogram,
-                      ...fetchMoreResult.research_db_fundingprogram,
+                    fetchMoreResult.demo_item = [
+                      ...prevResult.demo_item,
+                      ...fetchMoreResult.demo_item,
                     ];
                     setShowLoader(false);
                     return fetchMoreResult;

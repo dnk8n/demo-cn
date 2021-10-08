@@ -36,7 +36,7 @@ export const Nav = () => {
             href="/"
             style={{ fontSize: "36px", fontWeight: "800" }}
           >
-            research<span style={{ color: "#eb1561" }}>DB</span>
+            APC<span style={{ color: "#eb1561" }}>Repo</span>
           </a>
           <button
             className="navbar-toggler"
@@ -57,9 +57,7 @@ export const Nav = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="https://docs.rdb.dnk8n.dev/" target="_blank">
-                  Documentation
-                </a>
+                <a className="nav-link">Documentation</a>
               </li>
               {/* <li className="nav-item">
                 <a className="nav-link" href="#">
